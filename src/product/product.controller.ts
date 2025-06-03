@@ -29,8 +29,6 @@ export class ProductController {
 
   @Get('/')
   async getAllProducts(@Query() query: ProductQueryDto, @Res() res: Response) {
-    console.log('query:  ', query);
-
     return res
       .status(HttpStatus.OK)
       .json(
@@ -60,7 +58,6 @@ export class ProductController {
     @Body() body: ProductCreateUpdateDto,
     @Res() res: Response,
   ) {
-    console.log('body: ', body);
     return res
       .status(HttpStatus.CREATED)
       .json(

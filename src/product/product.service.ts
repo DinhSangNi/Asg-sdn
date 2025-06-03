@@ -55,7 +55,6 @@ export class ProductService {
       filtersParams,
     );
 
-    console.log('filtersParams: ', filtersParams);
     const total = await this.productRepository.count(filtersParams);
 
     return {
