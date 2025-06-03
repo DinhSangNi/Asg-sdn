@@ -6,9 +6,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: ['http://localhost:3000', 'https://fe-asm-sdn.vercel.app/'],
-    credentials: true,
-    method: 'GET,PUT,PATCH,POST,DELETE',
+    origin: ['http://localhost:3000', 'https://fe-asm-sdn.vercel.app'],
+    methods: 'GET,PUT,PATCH,POST,DELETE',
   });
 
   app.useGlobalPipes(
