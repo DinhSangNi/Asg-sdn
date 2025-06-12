@@ -5,6 +5,8 @@ import { ProductModule } from './product/product.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
       }),
     }),
     ProductModule,
+    AuthModule,
+    UserModule,
     CloudinaryModule,
   ],
   controllers: [AppController],

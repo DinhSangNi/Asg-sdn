@@ -9,8 +9,8 @@ import {
   Put,
   Query,
   Res,
-  UploadedFile,
   UploadedFiles,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
@@ -19,9 +19,10 @@ import { ApiResponse } from 'src/dto/response/api-response.dto';
 import { PaginationResultDto } from 'src/dto/response/pagination-result.dto';
 import { Product } from 'src/entity/product.schema';
 import { Response } from 'express';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { FilesInterceptor } from '@nestjs/platform-express';
 import { ProductCreateUpdateDto } from 'src/dto/request/product-create-update.dto';
 import { ProductDeleteDto } from 'src/dto/request/product-delete.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('products')
 export class ProductController {
@@ -52,6 +53,7 @@ export class ProductController {
   }
 
   @Post('/')
+  @UseGuards(AuthGuard('jwt'))
   @UseInterceptors(FilesInterceptor('files'))
   async create(
     @UploadedFiles() files: Express.Multer.File[],
@@ -69,6 +71,7 @@ export class ProductController {
   }
 
   @Put('/:id')
+  @UseGuards(AuthGuard('jwt'))
   @UseInterceptors(FilesInterceptor('files'))
   async update(
     @Param('id') id: string,
@@ -88,6 +91,7 @@ export class ProductController {
   }
 
   @Delete('/:id')
+  @UseGuards(AuthGuard('jwt'))
   async delete(
     @Param() pproductDeleteDto: ProductDeleteDto,
     @Res() res: Response,
