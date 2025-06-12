@@ -16,8 +16,7 @@ import { AuthService } from './auth.service';
         return {
           secret: configService.get<string>('ACCESSTOKEN_SECRET'),
           signOptions: {
-            expiresIn:
-              configService.get<string>('ACCESSTOKEN_EXPIRATION') || '1h',
+            expiresIn: configService.get<string>('ACCESSTOKEN_EXPIRATION'),
           },
         };
       },
